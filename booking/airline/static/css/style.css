@@ -1,0 +1,92 @@
+/* Общие стили */
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif; /* Основной шрифт */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Высота в 100% от высоты окна браузера */
+    background-image: url('../images/flycoo.png'); /* Путь к изображению */
+    background-size: cover; /* Заполнение всего экрана */
+    background-repeat: no-repeat; /* Не повторять изображение */
+    background-position: center; /* Центрировать изображение */
+    color: #333; /* Темный текст */
+}
+
+/* Остальные стили остаются без изменений... */
+
+
+/* Заголовок */
+header {
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для заголовка */
+    padding: 10px 20px; /* Отступы */
+}
+
+.header-container {
+    display: flex; /* Используем Flexbox */
+    justify-content: space-between; /* Размещаем элементы по краям */
+    align-items: center; /* Центрируем по вертикали */
+}
+
+header h1 {
+    color: white; /* Белый цвет заголовка */
+    margin: 0; /* Убираем отступы */
+}
+
+.header-buttons a {
+    color: white; /* Цвет текста кнопок */
+    margin-left: 20px; /* Отступы между кнопками */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 8px 12px; /* Отступы для кнопок */
+    border: 2px solid white; /* Белая рамка для кнопок */
+    border-radius: 5px; /* Скругление углов */
+    transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.header-buttons a:hover {
+    background-color: white; /* Цвет фона при наведении */
+    color: black; /* Цвет текста при наведении */
+}
+
+/* Основной контент */
+main {
+    color: white; /* Цвет текста кнопок */
+    margin-left: 20px; /* Отступы между кнопками */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 8px 12px; /* Отступы для кнопок */
+    border: 2px solid white; /* Белая рамка для кнопок */
+    border-radius: 5px; /* Скругление углов */
+    transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+/* Стили для ссылок */
+a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #00aaff; /* Цвет текста */
+    font-weight: bold; /* Жирный текст */
+    padding: 10px 15px; /* Отступы */
+    border: 2px solid #00aaff; /* Рамка */
+    border-radius: 5px; /* Скругление углов */
+    transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+a:hover {
+    background-color: #00aaff; /* Цвет фона при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+/* Сообщения об ошибках и успехах */
+.alert {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #d4edda; /* Цвет фона для успешных сообщений */
+    color: #155724; /* Цвет текста для успешных сообщений */
+}
+
+.alert.error {
+    background-color: #f8d7da; /* Цвет фона для сообщений об ошибках */
+    color: #721c24; /* Цвет текста для сообщений об ошибках */
+}

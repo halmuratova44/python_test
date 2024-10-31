@@ -1,10 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyCo - Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<h2>Welcome, {{ user.username }}</h2>
-<p>You are now logged in!</p>
-
+<body>
+    <header>
+    <div class="header-container">
+        <h1>FlyCo!</h1>
+        <div class="header-buttons">
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+</header>
+</body>
 </html>
