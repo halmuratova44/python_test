@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список рейсов</title>
+</head>
+<body>
+    <h1>Список рейсов</h1>
+    <a href="{% url 'add_flight' %}">Добавить рейс</a>
+    <ul>
+        {% for flight in flights %}
+            <li>{{ flight.flight_number }} - {{ flight.departure_city }} to {{ flight.arrival_city }}
+                <a href="{% url 'delete_flight' flight.pk %}">Удалить</a></li>
+        {% empty %}
+            <li>Нет рейсов для отображения.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<h2>Delete Flight</h2>
+<p>Are you sure you want to delete flight {{ flight.flight_number }} from {{ flight.departure_city }} to {{ flight.arrival_city }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'flight_list' %}">Cancel</a>
+</form>
