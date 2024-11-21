@@ -7,15 +7,23 @@
     <title>FlyCo - Home</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body class="body">
     <header>
     <div class="header-container">
         <h1>FlyCo!</h1>
+
         <div class="header-buttons">
+
+
+            <a href="{% url 'search_flights' %}" >Поиск рейсов</a>
+
             <a href="{% url 'register' %}">Register</a>
             <a href="{% url 'login' %}">Login</a>
         </div>
+
     </div>
 </header>
+
+{% include 'flights/flight_list.html' %}
 </body>
 </html>

@@ -4,10 +4,18 @@ from .forms import UserRegisterForm
 from .forms import UserLoginForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render
+from flights.models import Flight
+
 
 def home(request):
-    """Главная страница."""
-    return render(request, 'airline/home.html')  # Замените на свой шаблон
+    flights = Flight.objects.all()
+    return render(request, 'airline/home.html', {'flights': flights})
+
+
+
+
+
+
 
 
 def login_view(request):
