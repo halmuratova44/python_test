@@ -1,0 +1,27 @@
+<!-- select_flight.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <h1>Flight Details</h1>
+
+    <!-- Выводим данные о рейсе -->
+    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
+    <p><strong>Departure City:</strong> {{ flight.departure_city }}</p>
+    <p><strong>Arrival City:</strong> {{ flight.arrival_city }}</p>
+    <p><strong>Departure Time:</strong> {{ flight.departure_time }}</p>
+    <p><strong>Arrival Time:</strong> {{ flight.arrival_time }}</p>
+    <p><strong>Airline:</strong> {{ flight.airline }}</p>
+    <p><strong>Price:</strong> ${{ flight.price }}</p>
+    <p><strong>Seats Available:</strong> {{ flight.seats_available }}</p>
+  <label for="economy">Обычный класс ({{ flight.economy_class_price }} руб.)</label>
+  <input type="radio" name="class" value="economy" id="economy" required>
+    <a href="{% url 'booking_success' flight.pk %}" class="btn">Бронировать</a>
+</body>
+</html>

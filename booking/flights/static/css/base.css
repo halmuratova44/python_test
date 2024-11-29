@@ -1,0 +1,105 @@
+/* Общие стили для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* светлый фон */
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* Заголовки */
+h1 {
+    text-align: center;
+    color: #4CAF50; /* Зеленый цвет */
+    font-size: 2rem;
+    margin-top: 30px;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Основной контейнер */
+.container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Стиль для списка данных о рейсе */
+.flight-details {
+    margin: 20px 0;
+}
+
+.flight-details p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.flight-details strong {
+    color: #333;
+}
+
+/* Кнопка */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Стили для ссылок */
+a {
+    text-decoration: none;
+}
+
+/* Разделение между заголовками */
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Стили для блока с сообщениями */
+.alert {
+    background-color: #f8d7da;
+    color: red;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}

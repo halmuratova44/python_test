@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск рейсов</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-form label {
+            font-weight: bold;
+        }
+        .search-form input, .search-form button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+        .flight-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .flight-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            max-width: 300px;
+            text-align: left;
+        }
+        .flight-card h3 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поиск рейсов</h1>
+
+    <!-- Панель поиска -->
+    <form method="GET" class="search-form">
+        <label for="departure">Город отправления:</label>
+        <input type="text" id="departure" name="departure_city" placeholder="Введите город отправления">
+
+        <label for="arrival">Город назначения:</label>
+        <input type="text" id="arrival" name="arrival_city" placeholder="Введите город назначения">
+
+        <label for="date">Дата отправления:</label>
+        <input type="date" id="date" name="departure_date">
+
+        <button type="submit">Поиск</button>
+    </form>
+
+    <!-- Результаты поиска -->
+    <div class="flight-container">
+        {% for flight in flights %}
+            <div class="flight-card">
+                <h3>Рейс {{ flight.flight_number }}</h3>
+                <p><strong>Город отправления:</strong> {{ flight.departure_city }}</p>
+                <p><strong>Город назначения:</strong> {{ flight.arrival_city }}</p>
+                <p><strong>Дата и время отправления:</strong> {{ flight.departure_time }}</p>
+                <p><strong>Дата и время прибытия:</strong> {{ flight.arrival_time }}</p>
+                <p><strong>Авиакомпания:</strong> {{ flight.airline }}</p>
+                <p><strong>Цена:</strong> {{ flight.price }} руб.</p>
+                <p><strong>Доступные места:</strong> {{ flight.seats_available }}</p>
+                <a href="{% url 'select_flight' flight.pk %}">Выбрать</a>
+            </div>
+        {% empty %}
+            <p>Нет рейсов, соответствующих вашему запросу.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

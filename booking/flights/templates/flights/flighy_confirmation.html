@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- flight_confirmation.html -->
+<h2>Подтверждение бронирования</h2>
+
+<p>Вы выбрали рейс: {{ flight.departure_city }} — {{ flight.arrival_city }}</p>
+<p>Вы выбрали класс: {{ selected_class }}</p>
+<p>Стоимость билета: {{ price }} руб.</p>
+
+<!-- Можно добавить кнопку для перехода к оплате -->
+<a href="{% url 'payment_page' %}">Перейти к оплате</a>
+
+
+</body>
+</html>

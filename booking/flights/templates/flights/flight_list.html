@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список рейсов</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            background-image: url('flycoo.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+        }
+
+        /* Заголовок */
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для рейсов */
+        .flight-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Карточки рейсов */
+        .flight-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 300px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .flight-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .flight-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        .flight-card p {
+            margin: 5px 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Кнопка удаления */
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #a71d2a;
+        }
+
+        /* Форма */
+        .admin-panel {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-panel form {
+            display: inline-block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список рейсов</h1>
+
+    <!-- Панель администратора -->
+    {% if user.is_staff %}
+        <div class="admin-panel">
+            <a href="{% url 'add_flight' %}" class="btn">Добавить рейс</a>
+        </div>
+    {% endif %}
+
+    <div class="flight-container">
+        {% for flight in flights %}
+            <div class="flight-card">
+                <h2>Рейс {{ flight.flight_number }}</h2>
+                <p><strong>Город отправления:</strong> {{ flight.departure_city }}</p>
+                <p><strong>Город назначения:</strong> {{ flight.arrival_city }}</p>
+                <p><strong>Дата и время отправления:</strong> {{ flight.departure_time }}</p>
+                <p><strong>Дата и время прибытия:</strong> {{ flight.arrival_time }}</p>
+                <p><strong>Авиакомпания:</strong> {{ flight.airline }}</p>
+                <p><strong>Обычный класс:</strong> {{ flight.price }} руб.</p>
+
+
+                <p><strong>Доступные места:</strong> {{ flight.seats_available }}</p>
+
+                <!-- Доступно только администратору -->
+                {% if user.is_staff %}
+                    <a href="{% url 'delete_flight' flight.pk %}" class="btn btn-delete">Удалить рейс</a>
+                    <a href="{% url 'edit_flight' flight.pk %}" class="btn">Редактировать</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Нет рейсов для отображения.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
