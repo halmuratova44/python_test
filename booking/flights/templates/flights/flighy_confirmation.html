@@ -2,19 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение бронирования</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1em;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+        }
+
+        .btn-cancel:hover {
+            background-color: #a71d2a;
+        }
+    </style>
 </head>
 <body>
-<!-- flight_confirmation.html -->
-<h2>Подтверждение бронирования</h2>
+    <h2>Подтверждение бронирования</h2>
 
-<p>Вы выбрали рейс: {{ flight.departure_city }} — {{ flight.arrival_city }}</p>
-<p>Вы выбрали класс: {{ selected_class }}</p>
-<p>Стоимость билета: {{ price }} руб.</p>
+    <p><strong>Рейс:</strong> {{ flight.departure_city }} — {{ flight.arrival_city }}</p>
+    <p><strong>Дата и время отправления:</strong> {{ flight.departure_time }}</p>
+    <p><strong>Класс:</strong> {{ selected_class }}</p>
+    <p><strong>Стоимость билета:</strong> {{ price }} руб.</p>
 
-<!-- Можно добавить кнопку для перехода к оплате -->
-<a href="{% url 'payment_page' %}">Перейти к оплате</a>
-
-
+    <div class="button-container">
+        <a href="{% url 'payment_page' %}" class="btn">Перейти к оплате</a>
+        <a href="{% url 'flight_list' %}" class="btn btn-cancel">Отменить</a>
+    </div>
 </body>
 </html>

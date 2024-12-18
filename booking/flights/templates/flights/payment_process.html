@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата</title>
+</head>
+<body>
+    <h1>Оплата за рейс {{ flight.flight_number }}</h1>
+    <p><strong>Цена билета:</strong> {{ flight.price }}</p>
+    <p><strong>Класс билета:</strong> {{ ticket_class }}</p>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <h3>Введите данные для оплаты</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="card_number">Номер карты:</label>
+        <input type="text" id="card_number" name="card_number" required>
+
+        <label for="expiry_date">Срок действия:</label>
+        <input type="text" id="expiry_date" name="expiry_date" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+
+        <button type="submit">Оплатить</button>
+    </form>
+</body>
+</html>

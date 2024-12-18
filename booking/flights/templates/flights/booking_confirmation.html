@@ -1,28 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Confirmation</title>
+    <title>Подтверждение бронирования</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h3 {
+            color: #444;
+        }
+        p {
+            margin: 5px 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Booking Confirmation</h1>
+    <h1>Подтверждение бронирования</h1>
+    <p><strong>Вы выбрали рейс:</strong> {{ flight.flight_number }}</p>
+    <p><strong>Город отправления:</strong> {{ flight.departure_city }}</p>
+    <p><strong>Город назначения:</strong> {{ flight.arrival_city }}</p>
+    <p><strong>Дата отправления:</strong> {{ flight.departure_time }}</p>
 
-    <p>Your booking has been successfully confirmed!</p>
 
-    <h2>Flight Details</h2>
-    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
-    <p><strong>Departure City:</strong> {{ flight.departure_city }}</p>
-    <p><strong>Arrival City:</strong> {{ flight.arrival_city }}</p>
-    <p><strong>Departure Time:</strong> {{ flight.departure_time }}</p>
-    <p><strong>Arrival Time:</strong> {{ flight.arrival_time }}</p>
-    <p><strong>Airline:</strong> {{ flight.airline }}</p>
-    <p><strong>Price:</strong> ${{ flight.price }}</p>
-    <p><strong>Seats Available:</strong> {{ flight.seats_available }}</p>
 
-    <!-- Кнопка для перехода на главную страницу -->
-    <a href="{% url 'home' %}">
-        <button>Go to Homepage</button>
+    <h3>Выберите класс билета:</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="ticket_class">Класс билета:</label>
+        <select id="ticket_class" name="ticket_class">
+            <option value="BUSINESS" {% if selected_class == 'BUSINESS' %}selected{% endif %}>Бизнес класс</option>
+            <option value="COMFORT" {% if selected_class == 'COMFORT' %}selected{% endif %}>Комфорт класс</option>
+            <option value="ECONOMY" {% if selected_class == 'ECONOMY' %}selected{% endif %}>Эконом класс</option>
+        </select>
+
+        <h3>Заполните данные для бронирования:</h3>
+        <label for="first_name">Имя:</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Фамилия:</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="phone_number">Номер телефона:</label>
+        <input type="tel" id="phone_number" name="phone_number" required>
+
+         <a href="{% url 'payment_process' flight.id %}">
+        <button type="button">Перейти к оплате</button>
     </a>
+    </form>
 </body>
 </html>

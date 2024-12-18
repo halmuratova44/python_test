@@ -2,9 +2,78 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактирование рейса</title>
     <style>
-        /* Здесь можно добавить те же стили, что и для страницы добавления рейса */
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Светлый фон */
+            color: #333;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #007bff; /* Синий фон для заголовка */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form button {
+            padding: 10px;
+            background-color: #28a745; /* Зеленая кнопка */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+
+        /* Ссылка "отмена" */
+        .cancel-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #6c757d;
+            text-decoration: none;
+        }
+
+        .cancel-link:hover {
+            color: #0056b3; /* Синий оттенок при наведении */
+        }
     </style>
 </head>
 <body>
@@ -19,6 +88,7 @@
             {{ form.as_p }}
             <button type="submit">Сохранить изменения</button>
         </form>
+        <a href="{% url 'flight_list' %}" class="cancel-link">Отмена</a> <!-- Ссылка для отмены -->
     </div>
 </body>
 </html>

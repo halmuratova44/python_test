@@ -4,8 +4,6 @@ from flights import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(' ', include('airline.urls')),  # Заменено на airline
-    path('admin/', admin.site.urls),
     path('', include('airline.urls')),
     path('flights/', include('flights.urls'))
 ]

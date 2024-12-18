@@ -2,106 +2,97 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Flight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Добавить новый рейс</title>
     <style>
-        /* Общие стили */
         body {
-            font-family: 'Arial', sans-serif; /* Основной шрифт */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh; /* Высота в 100% от высоты окна браузера */
-            background-image: url('flycoo.png'); /* Путь к изображению */
-            background-size: cover; /* Заполнение всего экрана */
-            background-repeat: no-repeat; /* Не повторять изображение */
-            background-position: center; /* Центрировать изображение */
-            color: #333; /* Темный текст */
+            min-height: 100vh;
+            background-image: url('flycoo.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
         }
-
-        /* Заголовок */
         header {
-            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для заголовка */
-            padding: 10px 20px; /* Отступы */
-            text-align: center; /* Центрируем заголовок */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
         }
-
         header h1 {
-            color: white; /* Белый цвет заголовка */
-            margin: 0; /* Убираем отступы */
+            color: #fff;
+            margin: 0;
+            font-size: 2rem;
         }
-
-        /* Основной контент */
         .form-container {
             display: flex;
-            justify-content: center; /* Выравнивание формы по центру */
+            justify-content: center;
             align-items: center;
-            height: 80vh; /* Высота формы */
-            flex-direction: column; /* Центрирование по вертикали */
-        }
-
-        form {
-            background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для формы */
+            min-height: calc(100vh - 60px);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 600px; /* Максимальная ширина формы */
         }
-
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+        }
         h2 {
             text-align: center;
             margin-bottom: 20px;
+            color: #007bff;
         }
-
         form button {
             display: inline-block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             background-color: #007bff;
-            color: white;
+            color: #fff;
             border: none;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 1.2em;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-
         form button:hover {
             background-color: #0056b3;
         }
-
-        /* Стили для ссылок */
         a {
-            text-decoration: none; /* Убираем подчеркивание */
-            color: #00aaff; /* Цвет текста */
-            font-weight: bold; /* Жирный текст */
-            padding: 10px 15px; /* Отступы */
-            border: 2px solid #00aaff; /* Рамка */
-            border-radius: 5px; /* Скругление углов */
-            transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1rem;
+            transition: color 0.3s;
         }
-
         a:hover {
-            background-color: #00aaff; /* Цвет фона при наведении */
-            color: white; /* Цвет текста при наведении */
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-
-    <!-- Заголовок страницы -->
+    <!-- Заголовок -->
     <header>
         <h1>Добавить новый рейс</h1>
     </header>
 
-    <!-- Контейнер формы -->
+    <!-- Основной контейнер -->
     <div class="form-container">
-        <h2>Добавить новый рейс</h2>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
+            <h2>Форма нового рейса</h2>
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Добавить рейс</button>
+            <a href="{% url 'flight_list' %}">Вернуться к списку рейсов</a>
         </form>
     </div>
-
 </body>
 </html>

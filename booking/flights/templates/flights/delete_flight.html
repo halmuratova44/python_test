@@ -1,7 +1,27 @@
 <h2>Delete Flight</h2>
-<p>Are you sure you want to delete flight {{ flight.flight_number }} from {{ flight.departure_city }} to {{ flight.arrival_city }}?</p>
-<form method="post">
+<p>
+    Are you sure you want to delete flight
+    <strong>{{ flight.flight_number }}</strong>
+    from <strong>{{ flight.departure_city }}</strong>
+    to <strong>{{ flight.arrival_city }}</strong>?
+</p>
+<form method="post" style="margin-top: 20px;">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
-    <a href="{% url 'flight_list' %}">Cancel</a>
+    <!-- Кнопки действия -->
+    <button type="submit" style="
+        padding: 10px 20px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    ">Yes, Delete</button>
+    <a href="{% url 'flight_list' %}" style="
+        padding: 10px 20px;
+        background-color: #ccc;
+        color: black;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-left: 10px;
+    ">Cancel</a>
 </form>

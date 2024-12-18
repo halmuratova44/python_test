@@ -80,7 +80,6 @@
             background-color: #0056b3;
         }
 
-        /* Кнопка удаления */
         .btn-delete {
             background-color: #dc3545;
         }
@@ -89,15 +88,19 @@
             background-color: #a71d2a;
         }
 
-        /* Форма */
-        .admin-panel {
+        /* Центрирование пустого текста */
+        .empty-message {
             text-align: center;
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: white;
+            margin-top: 20px;
         }
 
-        .admin-panel form {
-            display: inline-block;
-            margin: 0 auto;
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .flight-card {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -121,18 +124,21 @@
                 <p><strong>Дата и время прибытия:</strong> {{ flight.arrival_time }}</p>
                 <p><strong>Авиакомпания:</strong> {{ flight.airline }}</p>
                 <p><strong>Обычный класс:</strong> {{ flight.price }} руб.</p>
-
-
                 <p><strong>Доступные места:</strong> {{ flight.seats_available }}</p>
 
-                <!-- Доступно только администратору -->
+
+
+                {% if flight.business_price %}
+                    <p><strong>Бизнес-класс:</strong> {{ flight.business_price }} руб.</p>
+                {% endif %}
+
                 {% if user.is_staff %}
-                    <a href="{% url 'delete_flight' flight.pk %}" class="btn btn-delete">Удалить рейс</a>
-                    <a href="{% url 'edit_flight' flight.pk %}" class="btn">Редактировать</a>
+                    <a href="{% url 'edit_flight' flight.pk %}" class="btn">🖉 Редактировать</a>
+                    <a href="{% url 'delete_flight' flight.pk %}" class="btn btn-delete">🗑️ Удалить</a>
                 {% endif %}
             </div>
         {% empty %}
-            <p>Нет рейсов для отображения.</p>
+            <p class="empty-message">Нет рейсов для отображения.</p>
         {% endfor %}
     </div>
 </body>

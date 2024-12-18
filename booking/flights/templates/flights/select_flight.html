@@ -1,27 +1,37 @@
-<!-- select_flight.html -->
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Details</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Выбор рейса</title>
 </head>
 <body>
-    <h1>Flight Details</h1>
+    <h1>Выбор рейса</h1>
+    <h2>Рейс {{ flight.flight_number }}</h2>
+    <p>Город отправления: {{ flight.departure_city }}</p>
+    <p>Город назначения: {{ flight.arrival_city }}</p>
+    <p>Дата отправления: {{ flight.departure_time }}</p>
+    <p>Цена эконом-класса: {{ economy_class_price }}</p>
+    <p>Цена комфорт-класса: {{ comfort_class_price }}</p>
+    <p>Цена бизнес-класса: {{ business_class_price }}</p>
 
-    <!-- Выводим данные о рейсе -->
-    <p><strong>Flight Number:</strong> {{ flight.flight_number }}</p>
-    <p><strong>Departure City:</strong> {{ flight.departure_city }}</p>
-    <p><strong>Arrival City:</strong> {{ flight.arrival_city }}</p>
-    <p><strong>Departure Time:</strong> {{ flight.departure_time }}</p>
-    <p><strong>Arrival Time:</strong> {{ flight.arrival_time }}</p>
-    <p><strong>Airline:</strong> {{ flight.airline }}</p>
-    <p><strong>Price:</strong> ${{ flight.price }}</p>
-    <p><strong>Seats Available:</strong> {{ flight.seats_available }}</p>
-  <label for="economy">Обычный класс ({{ flight.economy_class_price }} руб.)</label>
-  <input type="radio" name="class" value="economy" id="economy" required>
-    <a href="{% url 'booking_success' flight.pk %}" class="btn">Бронировать</a>
+    <h3>Выберите класс билета</h3>
+   <form method="POST" action="{% url 'booking_confirmation' flight.id %}">
+    {% csrf_token %}
+    <h3>Выберите класс билета:</h3>
+    <label>
+        <input type="radio" name="ticket_class" value="ECONOMY" required>
+        Эконом — {{ economy_class_price }} (доступно мест: {{ economy_seats }})
+    </label><br>
+    <label>
+        <input type="radio" name="ticket_class" value="COMFORT" required>
+        Комфорт — {{ comfort_class_price }} (доступно мест: {{ comfort_seats }})
+    </label><br>
+    <label>
+        <input type="radio" name="ticket_class" value="BUSINESS" required>
+        Бизнес — {{ business_class_price }} (доступно мест: {{ business_seats }})
+    </label><br>
+    <button type="submit">Подтвердить</button>
+</form>
+
 </body>
 </html>
